@@ -1,0 +1,122 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+int main()
+{
+    // Declare movie selection 1-5 (switch statement)
+    int movieSelection, age;
+    int movieAge = 0;
+    // Declare constant
+    const int Rated_G = 0;
+    const int Rated_PG = Rated_G + 18;
+    const int Rated_PG_13 = 13;
+    const int Rated_R = 17;
+    const int Rated_NC_17 = 18;
+    // Declare movie rating and title
+    string movieRating, movieTitle;
+    
+    //Introduce the User to the movie program
+    cout << "********** Movie Ticket Booking **********\n\n";
+    cout << "Today's Movies:\n";
+    
+    cout << "1. \"The Matrix\" - Rated R\n";
+    cout << "2. \"Star Wars: Episode V - The Empire Strikes Back\" - Rated PG\n";
+    cout << "3. \"Inception\" - Rated PG-13\n";
+    cout << "4. \"Toy Story\" - Rated G\n";
+    cout << "5. \"Crash\" - Rated NC-17\n\n";
+    
+    cout << "Please select a movie by entering its number: ";
+    cin >> movieSelection;
+    cout << "\n";
+    
+    // this || is for or
+    // movie selection is between 1-5 but if it's not, then there will be an error message
+    if (movieSelection < 1 || movieSelection > 5) {
+        cout << "\nInvalid Selection! You must pick a number between 1-5\n\n";
+        return 1;
+    }
+    
+    switch (movieSelection) {
+        case 1:
+            movieTitle = "The Matrix";
+            movieRating = "Rated R";
+            movieAge = Rated_R;
+            break;
+        case 2:
+            movieTitle = "Star Wars: Episode V - The Empire Strikes Back";
+            movieRating = "Rated PG";
+            movieAge = Rated_PG;
+            break;
+        case 3:
+            movieTitle = "Inception";
+            movieRating = "Rated PG-13";
+            movieAge = Rated_PG_13;
+            break;
+        case 4:
+            movieTitle = "Toy Story";
+            movieRating = "Rated G";
+            movieAge = Rated_G;
+            break;
+        case 5:
+            movieTitle = "Crash";
+            movieRating = "Rated NC-17";
+            movieAge = Rated_NC_17;
+            break;
+    }
+   
+    cout << movieTitle << " is " << movieRating << ". Please enter your age: ";
+    cin >> age;
+    cout << "\n";
+    
+    // return 1 for false
+    if (age < movieAge) {
+        cout << "\nSorry, you must be at least " << movieAge << " to watch " << movieTitle << ".\n\n";
+        return 1;
+    }
+    
+    // return 1 for false
+    if (age < movieAge) {
+        cout << "\nSorry, you must be at least " << movieAge << " to watch " << movieTitle << ".\n\n";
+        return 1;
+    }
+    
+    int adultTickets, childTickets;
+    const double adultTicketPrice = 12.00;
+    const double childTicketPrice = 8.00;
+    
+        cout << "How many adult tickets would you like to purchase? ";
+        cin >> adultTickets;
+
+        cout << "How many child tickets would you like to purchase? ";
+        cin >> childTickets;
+
+        // Restricting children from adult movies
+        if ((movieAge == Rated_R || movieAge == Rated_NC_17) && childTickets > 0) {
+            cout << "\nSorry, you cannot purchase child tickets for this movie.\n\n";
+            return 1;
+        }
+
+    double totalCost = (adultTickets * adultTicketPrice) + (childTickets * childTicketPrice);
+        cout << fixed << setprecision(2);
+        cout << "Total cost: $" << totalCost << endl;
+
+    
+        double amountTendered;
+        cout << "Please enter the amount you are tendering: $";
+        cin >> amountTendered;
+
+        if (amountTendered < totalCost) {
+            cout << "Error: Amount tendered is less than the total cost. Transaction Cancelled.\n";
+            return 1;
+        }
+
+        double change = amountTendered - totalCost;
+        cout << "Change to be returned: $" << change << endl;
+
+    
+    cout << "Thank you for booking with us! Enjoy \"" << movieTitle << "\"!\n\n";
+    
+    return 0;
+}
