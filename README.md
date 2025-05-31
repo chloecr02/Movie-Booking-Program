@@ -36,5 +36,5 @@ If the amount given is more or equal to the total cost of the tickets,
   Then, calculate the amount of change.  
   Display change and an Enjoy the movie message.  
     
-  Display info on programmer and assignment.  
+  Display info on programmer.  
   
